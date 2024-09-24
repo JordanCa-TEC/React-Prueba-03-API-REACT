@@ -17,7 +17,7 @@ interface PokemonData {
 interface UseFetchPokemonReturn {
   data: PokemonData | null; // Permitir que data sea null
   loading: boolean;
-  error: any;
+  error: Error | null; // Mejorar el tipo de error
 }
 
 const PokemonDetail: React.FC = () => {
@@ -40,4 +40,5 @@ const PokemonDetail: React.FC = () => {
 }
 
 export default PokemonDetail;
+
 
