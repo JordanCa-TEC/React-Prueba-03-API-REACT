@@ -1,16 +1,16 @@
-// src/hooks/useFetchPokemon.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function useFetchPokemon(url) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// Tipos genéricos para que el hook pueda manejar cualquier tipo de datos
+function useFetchPokemon<T>(url: string) {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get<T>(url);
         setData(response.data);
       } catch (error) {
         setError(error);
@@ -26,3 +26,4 @@ function useFetchPokemon(url) {
 }
 
 export default useFetchPokemon;
+
